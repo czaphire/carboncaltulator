@@ -3,6 +3,7 @@ body {
   background-color: #106552;
   margin: 0;
   padding: 40px 0;
+  position: relative; /* for the version if you want it inside container bounds */
 }
 
 .container {
@@ -62,6 +63,23 @@ button {
   cursor: pointer;
 }
 
+.download-btn {
+  margin-top: 20px;
+  background-color: #4bd6a2;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #3bbd94;
+}
+
 .result {
   margin-top: 30px;
   background-color: #4a4a5c;
@@ -81,8 +99,8 @@ button {
 .result summary {
   font-weight: bold;
   font-size: 1em;
-  cursor: pointer;
   color: #4bd6a2;
+  cursor: pointer;
 }
 
 .result summary::-webkit-details-marker {
@@ -106,19 +124,29 @@ button {
   height: 28px;
   object-fit: contain;
 }
-.download-btn {
-  margin-top: 20px;
-  background-color: #4bd6a2;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+
+/* Hidden from screenshots */
+.screenshot-hide {
+  margin-top: 30px;
+  font-size: 0.95em;
+  color: #ffffff;
+  opacity: 0.9;
+  text-align: center;
 }
 
-.download-btn:hover {
-  background-color: #3bbd94;
+.screenshot-hide a {
+  color: #4bd6a2;
+  text-decoration: underline;
+}
+
+/* Version badge */
+.version {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75em;
+  color: rgba(255,255,255,0.6);
+  pointer-events: none;
+  user-select: none;
 }
