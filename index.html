@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Carbon Savings Calculator + Report</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <title>Carbon Savings Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
   <div class="container">
-  <img src="banner.png" alt="Thinkpac Banner" /> <!-- adjust source accordingly -->
+    <img src="banner.png" alt="Banner" />
+    <div class="content">
+      <h2>♻️ Carbon Savings Calculator</h2>
+      <p>See how much carbon you can save by switching from virgin to PCR plastic packaging—and get a custom report delivered to your inbox.</p>
 
-  <div class="content">
-    <h2>♻️ Carbon Savings Calculator</h2>
-    <p>See how much carbon you can save by switching from virgin to PCR plastic packaging—and get a custom report delivered to your inbox.</p>
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" placeholder="John Doe" />
 
-    <label for="name">Your Name:</label>
-    <input type="text" id="name" placeholder="John Doe">
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" placeholder="you@example.com" />
 
-    <label for="email">Your Email:</label>
-    <input type="email" id="email" placeholder="you@example.com">
+      <label for="plasticWeight">Plastic Used Per Year (kg):</label>
+      <input type="number" id="plasticWeight" placeholder="Enter weight in kilograms" />
 
-    <label for="plasticWeight">Plastic Used Per Year (kg):</label>
-    <input type="number" id="plasticWeight" placeholder="Enter weight in kilograms">
+      <button onclick="calculateAndGenerateReport()">Generate Report</button>
 
-    <button onclick="calculateAndGenerateReport()">Generate Report</button>
-
-    <div class="result" id="output" style="display:none;"></div>
+      <div class="result" id="output" style="display:none;"></div>
+      <button id="downloadBanner" class="download-btn" style="display:none;">Download Result Image</button>
+    </div>
   </div>
-</div>
 
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>

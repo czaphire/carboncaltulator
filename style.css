@@ -1,6 +1,6 @@
 body {
- font-family: 'Poppins', sans-serif;
- background-color: #106552;
+  font-family: 'Poppins', sans-serif;
+  background-color: #106552;
   margin: 0;
   padding: 40px 0;
 }
@@ -9,11 +9,11 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 0;
-  background-color: #343444; /* changed from #343444 */
+  background-color: #343444;
   color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* enhanced shadow */
-  overflow: hidden; /* ensures children don't overflow the rounded edges */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .container img {
@@ -69,6 +69,7 @@ button {
   border-radius: 8px;
   color: #ffffff;
 }
+
 .result details {
   margin-top: 15px;
   background-color: #3c3c50;
@@ -86,4 +87,38 @@ button {
 
 .result summary::-webkit-details-marker {
   color: #4bd6a2;
+}
+
+.branding {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.branding span {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.branding img {
+  height: 28px;
+  object-fit: contain;
+}
+.download-btn {
+  margin-top: 20px;
+  background-color: #4bd6a2;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #3bbd94;
 }
