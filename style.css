@@ -1,12 +1,14 @@
+/* style.css */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #106552;
   margin: 0;
   padding: 40px 0;
-  position: relative; /* for the version if you want it inside container bounds */
 }
 
 .container {
+  /* fluid width up to 600px */
+  width: 90%;
   max-width: 600px;
   margin: 0 auto;
   padding: 0;
@@ -101,10 +103,16 @@ button {
   font-size: 1em;
   color: #4bd6a2;
   cursor: pointer;
+  list-style: none;
+}
+/* WebKit browsers (Chrome, Safari) */
+.result summary::-webkit-details-marker {
+  display: none;
 }
 
-.result summary::-webkit-details-marker {
-  color: #4bd6a2;
+/* Firefox */
+.result summary::-moz-list-bullet {
+  display: none;
 }
 
 .branding {
@@ -125,28 +133,28 @@ button {
   object-fit: contain;
 }
 
-/* Hidden from screenshots */
-.screenshot-hide {
-  margin-top: 30px;
-  font-size: 0.95em;
-  color: #ffffff;
-  opacity: 0.9;
-  text-align: center;
-}
+/* Responsive tweaks for small screens */
+@media screen and (max-width: 480px) {
+  .content {
+    padding: 20px;
+  }
 
-.screenshot-hide a {
-  color: #4bd6a2;
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  button,
+  .download-btn {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+  }
+}
+a {
+  color: #4bd6a2;            /* Matches your brand green by default */
   text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
-/* Version badge */
-.version {
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75em;
-  color: rgba(255,255,255,0.6);
-  pointer-events: none;
-  user-select: none;
+a:hover {
+  color: #ffffff;            /* White on hover */
 }
