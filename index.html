@@ -1,14 +1,12 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Ensure proper scaling on mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Carbon Savings Calculator</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -18,16 +16,28 @@
       <h2>♻️ Carbon Savings Calculator</h2>
       <p>See how much carbon you can save by switching from virgin to PCR plastic packaging—and get a custom report delivered to your inbox.</p>
 
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" placeholder="John Doe" />
+      <form id="form">
+	   <label for="name">Your Name:</label>
+  <input type="text"   name="user_name"     id="name" placeholder="John Doe" />
+        <label for="email">Your Email:</label>
 
-      <label for="email">Your Email:</label>
-      <input type="email" id="email" placeholder="you@example.com" />
+  <input type="email"  name="email"         id="email" placeholder="you@example.com" />
+        <label for="plasticWeight">Plastic Used Per Year (kg):</label>
 
-      <label for="plasticWeight">Plastic Used Per Year (kg):</label>
-      <input type="number" id="plasticWeight" placeholder="Enter weight in kilograms" />
+  <input type="number" name="plasticWeight" id="plasticWeight" placeholder="kg/year" />
+  
+  <!-- Hidden fields for template -->
+  <input type="hidden" name="virgin_co2"  />
+  <input type="hidden" name="pcr_co2"     />
+  <input type="hidden" name="savings"     />
+  <input type="hidden" name="cars_off"    />
+  <input type="hidden" name="report_image" />
+  
+  <div class="result" id="output" style="display:none;"></div>
 
-<button id="genBtn">Generate Report</button>
+  <input type="submit" id="button" value="Send Email">
+</form>
+<script src="script.js"></script>
 
       <div class="result" id="output" style="display:none;"></div>
       <button id="downloadBanner" class="download-btn" style="display:none;">Download Result Image</button>
@@ -35,13 +45,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script type="text/javascript">
-  emailjs.init('nOjcxbB9Swb_AmQqu')
-</script>
-
   <script src="script.js"></script>
 </body>
 </html>

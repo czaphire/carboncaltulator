@@ -158,3 +158,28 @@ a {
 a:hover {
   color: #ffffff;            /* White on hover */
 }
+
+input[type="submit"] {
+  display: block;
+  padding: 6px 30px;
+  font-size: 14px;
+  background-color: #4460AA;
+  color: #fff;
+  border: none
+}
+
+generateReportBtn {
+  margin-top: 24px;                /* same spacing as before */
+  width: 200px;                    /* set to your image’s width */
+  height: 48px;                    /* set to your image’s height */
+  padding: 0;                      /* no inner padding */
+  border: none;                    /* remove default border */
+  background: url('button-image.png') 
+              no-repeat center;    /* use your image */
+  background-size: contain;        /* scale to fit */
+  cursor: pointer;                 /* pointer on hover */
+}
+generateReportBtn:focus {
+  outline: 2px solid #4bd6a2;      /* accessible focus state */
+  outline-offset: 2px;
+}
