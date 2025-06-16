@@ -68,47 +68,32 @@ function captureAndEmail(
   savings,
   carsOffRoad
 ) {
+  // Hide extra info before screenshot
   const info = document.querySelector('.screenshot-hide');
   info.style.display = 'none';
 
-  html2canvas(element, {
-    scale: 0.8   // render at 80% size
-  }).then(canvas => {
+  html2canvas(element).then(canvas => {
+    // restore visibility
     info.style.display = '';
 
-    // trigger download of a small PNG if you still want it
+    // trigger download
     const link = document.createElement('a');
     link.download = 'carbon_savings_result.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
 
-    // then compress to JPEG under 50 KB
-    canvas.toBlob(blob => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // strip off the "data:...;base64," prefix
-        const base64data = reader.result.split(',')[1];
-
-        emailjs.send(
-          'service_s6mj7hb',
-          'template_ex0h1sh',
-          {
-            to_email:      recipientEmail,
-            user_name:     document.getElementById('name').value.trim(),
-            virgin_co2:    virginCO2.toFixed(2),
-            pcr_co2:       pcrCO2.toFixed(2),
-            savings:       savings.toFixed(2),
-            cars_off:      carsOffRoad.toFixed(2),
-          }
-        )
-        .then(() => alert('Report emailed successfully!'))
-        .catch(err => {
-          console.error(err);
-          alert('Email send failed.');
-        });
-      };
-      // quality 0.7 gives a good trade-off between size & readability
-      reader.readAsDataURL(blob);
-    }, 'image/jpeg', 0.7);
+    // send via EmailJS
+    const serviceID  = 'service_s6mj7hb';
+    const templateID = 'template_ex0h1sh';
+    emailjs.send(serviceID, templateID, {
+      to_email:   recipientEmail,
+      user_name:  document.getElementById('name').value.trim(),
+      virgin_co2: virginCO2.toFixed(2),
+      pcr_co2:    pcrCO2.toFixed(2),
+      savings:    savings.toFixed(2),
+      cars_off:   carsOffRoad.toFixed(2),
+    })
+    .then(() => alert('Report emailed successfully!'))
+    .catch(err => { console.error(err); alert('Email send failed.'); });
   });
 }
