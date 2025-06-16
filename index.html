@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carbon Savings Calculator + Report</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>♻️ Carbon Savings Calculator</h2>
+  <p>See how much carbon you can save by switching from virgin to PCR plastic packaging—and get a custom report delivered to your inbox.</p>
+
+  <label for="name">Your Name:</label>
+  <input type="text" id="name" placeholder="John Doe">
+
+  <label for="email">Your Email:</label>
+  <input type="email" id="email" placeholder="you@example.com">
+
+  <label for="plasticWeight">Plastic Used Per Year (kg):</label>
+  <input type="number" id="plasticWeight" placeholder="Enter weight in kilograms">
+
+  <button onclick="calculateAndGenerateReport()">Generate Report</button>
+
+  <div class="result" id="output" style="display:none;"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
