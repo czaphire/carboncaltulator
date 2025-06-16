@@ -1,10 +1,14 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- Ensure proper scaling on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Carbon Savings Calculator</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -23,17 +27,21 @@
       <label for="plasticWeight">Plastic Used Per Year (kg):</label>
       <input type="number" id="plasticWeight" placeholder="Enter weight in kilograms" />
 
-      <button onclick="calculateAndGenerateReport()">Generate Report</button>
+<button id="genBtn">Generate Report</button>
 
       <div class="result" id="output" style="display:none;"></div>
       <button id="downloadBanner" class="download-btn" style="display:none;">Download Result Image</button>
     </div>
   </div>
 
-  <!-- Version badge -->
-  <div class="version">VERSION: 2.00</div>
-
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('nOjcxbB9Swb_AmQqu')
+</script>
+
   <script src="script.js"></script>
 </body>
 </html>
