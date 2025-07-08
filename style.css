@@ -1,185 +1,188 @@
-/* style.css */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #106552;
+/* Reset & Base */
+* {
   margin: 0;
-  padding: 40px 0;
-}
-
-.container {
-  /* fluid width up to 600px */
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
   padding: 0;
-  background-color: #343444;
-  color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-.container img {
-  display: block;
-  width: 100%;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.content {
-  padding: 30px;
-}
-
-h2 {
-  color: #4bd6a2;
-  margin-bottom: 10px;
-}
-
-label {
-  display: block;
-  margin-top: 18px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-input[type="number"],
-input[type="text"],
-input[type="email"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  font-size: 1em;
-  border: none;
-  border-radius: 6px;
   box-sizing: border-box;
 }
-
-button {
-  margin-top: 24px;
-  padding: 10px 20px;
-  background-color: #106552;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.download-btn {
-  margin-top: 20px;
-  background-color: #4bd6a2;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.download-btn:hover {
-  background-color: #3bbd94;
-}
-
-.result {
-  margin-top: 30px;
-  background-color: #4a4a5c;
-  padding: 20px;
-  border-radius: 8px;
-  color: #ffffff;
-}
-
-.result details {
-  margin-top: 15px;
-  background-color: #3c3c50;
-  padding: 12px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.result summary {
-  font-weight: bold;
-  font-size: 1em;
-  color: #4bd6a2;
-  cursor: pointer;
-  list-style: none;
-}
-/* WebKit browsers (Chrome, Safari) */
-.result summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Firefox */
-.result summary::-moz-list-bullet {
-  display: none;
-}
-
-.branding {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.branding span {
-  font-size: 0.9em;
-  opacity: 0.8;
-}
-
-.branding img {
-  height: 28px;
-  object-fit: contain;
-}
-
-/* Responsive tweaks for small screens */
-@media screen and (max-width: 480px) {
-  .content {
-    padding: 20px;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="number"],
-  button,
-  .download-btn {
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 1em;
-  }
-}
-a {
-  color: #4bd6a2;            /* Matches your brand green by default */
-  text-decoration: underline;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #ffffff;            /* White on hover */
-}
-
-input[type="submit"] {
-  display: block;
-  padding: 6px 30px;
-  font-size: 14px;
-  background-color: #4460AA;
+/* Dark page background & white body text */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #343444;
   color: #fff;
-  border: none
+  line-height: 1.4;
+}
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+/* Header & Footer */
+.site-header,
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #106552;
+  color: #fff;
 }
 
-generateReportBtn {
-  margin-top: 24px;                /* same spacing as before */
-  width: 200px;                    /* set to your image’s width */
-  height: 48px;                    /* set to your image’s height */
-  padding: 0;                      /* no inner padding */
-  border: none;                    /* remove default border */
-  background: url('button-image.png') 
-              no-repeat center;    /* use your image */
-  background-size: contain;        /* scale to fit */
-  cursor: pointer;                 /* pointer on hover */
+/* Cards – white background, dark text */
+.card {
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-generateReportBtn:focus {
-  outline: 2px solid #4bd6a2;      /* accessible focus state */
-  outline-offset: 2px;
+
+/* Input Card */
+.input-card label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+.input-card input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.input-card input:focus {
+  border-color: #106552;
+  outline: none;
+}
+.input-card .input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.input-card .input-group input {
+  flex: 1;
+}
+.input-card button {
+  background: #106552;
+  color: #fff;
+  border: none;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.input-card button:hover {
+  background: #0e553f;
+}
+
+/* Hide helper */
+.hidden {
+  display: none;
+}
+
+/* Executive Summary */
+.exec-card {
+  text-align: center;
+}
+.exec-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #106552;
+}
+
+/* Metrics Grid */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.metric-card {
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.metric-card .fas {
+  font-size: 2rem;
+  color: #106552;
+  margin-bottom: 0.5rem;
+}
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.metric-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+.metric-unit {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Charts */
+.chart-card {
+  position: relative;
+  height: 300px;
+  margin-bottom: 3rem;
+  color: #333;
+}
+.chart-card canvas {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+/* Methodology Table */
+.methodology-card {
+  text-align: center;
+}
+.methodology-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.methodology-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.methodology-table th,
+.methodology-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+.methodology-table thead {
+  background-color: #106552;
+}
+.methodology-table thead th {
+  color: #fff;
+  font-weight: 600;
+}
+.methodology-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+.methodology-table.hide {
+  display: none;
+}
+
+/* Certification Badge */
+.cert-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  color: #fff;
+  font-size: 0.9rem;
+}
+.cert-badge .fas {
+  color: #106552;
+  font-size: 1.2rem;
 }
