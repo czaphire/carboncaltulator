@@ -2,24 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta 
-    name="viewport" 
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recree8® Impact Calculator</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pMV+X4…your-integrity-hash…"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
@@ -27,112 +15,124 @@
   </header>
 
   <main class="container">
-    <!-- Input Card -->
     <section class="card input-card">
       <h2>Enter Your Details & Plastic Used Per Year (kg):</h2>
-
       <label for="name">Name:</label>
       <input type="text" id="name" placeholder="Your Name" required />
-
       <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="you@example.com"
-        required
-      />
-
+      <input type="email" id="email" placeholder="you@example.com" required />
       <div class="input-group">
-        <input
-          type="number"
-          id="massKg"
-          placeholder="Mass in kg"
-          min="0"
-          step="0.1"
-        />
-        <button id="compareBtn">Run LCA</button>
+        <input type="number" id="massKg" placeholder="Mass in kg" min="0" step="0.1" />
+        <button id="compareBtn">GENERATE RESULT</button>
       </div>
     </section>
 
-    <!-- Executive Summary -->
+    <!-- REMOVE the old metricsSection! -->
+
+    <!-- NEW: EXEC SUMMARY WITH METRICS INSIDE -->
     <section id="execSummarySection" class="card exec-card hidden">
-      <h2>Executive Summary</h2>
-      <p id="execSummaryText" class="exec-text"></p>
-    </section>
-
-    <!-- Metrics Section -->
-    <section id="metricsSection" class="metrics hidden">
-      <div class="metric-card">
-        <i class="fas fa-recycle"></i>
-        <div class="metric-value"><span id="metricPlastic">0</span></div>
-        <div class="metric-label">
-          Plastic Displaced<br>
-          <span class="metric-unit">(kg)</span>
+      <h2>Recree8® Impact Summary</h2>
+      <div id="impactMetricsContainer" class="metrics">
+        <div class="metric-card" data-type="plastic">
+          <i class="fas fa-recycle"></i>
+          <div class="metric-value"><span id="metricPlastic">0</span></div>
+          <div class="metric-label">Plastic Displaced<br><span class="metric-unit">(kg)</span></div>
+          <div class="metric-indicator hidden"></div>
         </div>
-      </div>
-      <div class="metric-card">
-        <i class="fas fa-cloud"></i>
-        <div class="metric-value"><span id="metricCO2">0</span></div>
-        <div class="metric-label">
-          CO₂e Avoided<br>
-          <span class="metric-unit">(kg)</span>
+        <div class="metric-card" data-type="co2">
+          <i class="fas fa-cloud"></i>
+          <div class="metric-value"><span id="metricCO2">0</span></div>
+          <div class="metric-label">CO₂e Avoided<br><span class="metric-unit">(kg)</span></div>
+          <div class="metric-indicator hidden"></div>
         </div>
-      </div>
-      <div class="metric-card">
-        <i class="fas fa-water"></i>
-        <div class="metric-value"><span id="metricWater">0</span></div>
-        <div class="metric-label">
-          Water Saved<br>
-          <span class="metric-unit">(litres)</span>
+        <div class="metric-card" data-type="water">
+          <i class="fas fa-water"></i>
+          <div class="metric-value"><span id="metricWater">0</span></div>
+          <div class="metric-label">Water Saved<br><span class="metric-unit">(litres)</span></div>
+          <div class="metric-indicator hidden"></div>
         </div>
-      </div>
-      <div class="metric-card">
-        <i class="fas fa-bolt"></i>
-        <div class="metric-value"><span id="metricEnergy">0</span></div>
-        <div class="metric-label">
-          Energy Saved<br>
-          <span class="metric-unit">(kWh)</span>
+        <div class="metric-card" data-type="energy">
+          <i class="fas fa-bolt"></i>
+          <div class="metric-value"><span id="metricEnergy">0</span></div>
+          <div class="metric-label">Energy Saved<br><span class="metric-unit">(kWh)</span></div>
+          <div class="metric-indicator hidden"></div>
         </div>
       </div>
     </section>
 
-    <!-- Chart 1: CO₂e Emissions -->
+    <section id="insightSection" class="insight-cards hidden">
+      <div id="insightPlastic" class="insight-card hidden"></div>
+      <div id="insightCO2" class="insight-card hidden"></div>
+      <div id="insightWater" class="insight-card hidden"></div>
+      <div id="insightEnergy" class="insight-card hidden"></div>
+    </section>
+
     <section id="chart1Section" class="card chart-card hidden">
       <h2>CO₂e Emissions</h2>
       <canvas id="emissionChart"></canvas>
     </section>
 
-    <!-- Chart 2: Impacts Comparison -->
     <section id="chart2Section" class="card chart-card hidden">
       <h2>Impacts Comparison</h2>
       <canvas id="savingsChart"></canvas>
     </section>
 
-    <!-- Methodology Appendix (collapsible) -->
     <section id="methodologySection" class="card methodology-card hidden">
       <div id="methodToggle" class="methodology-header">
         <h2>Methodology Appendix</h2>
         <i id="toggleIcon" class="fas fa-chevron-down"></i>
       </div>
       <table id="methodologyTable" class="methodology-table hide">
-        <thead>
-          <tr><th>Metric</th><th>Formula</th></tr>
-        </thead>
-        <tbody><!-- injected by JS --></tbody>
+        <thead><tr><th>Metric</th><th>Formula</th></tr></thead>
+        <tbody>
+         <tr class="expandable-row" data-target="virginDetail">
+            <td>Virgin CO₂e</td><td>mass × 2.7 kg CO₂e/kg</td>
+         </tr>
+         <tr class="collapse-content hide" id="virginDetail">
+           <td colspan="2">
+             <table class="sub-method-table">
+               <thead>
+                 <tr><th>Lifecycle Stage</th><th>Description</th><th>CO₂e (kg/kg)</th></tr>
+               </thead>
+               <tbody>
+                 <tr><td>Raw material</td><td>Crude oil extraction, cracking</td><td>~0.9</td></tr>
+                 <tr><td>Polymer production</td><td>Energy-intensive (natural gas-heavy)</td><td>~1.1</td></tr>
+                 <tr><td>Transport</td><td>Long distances in AUS</td><td>~0.4</td></tr>
+                 <tr><td>Packaging conversion</td><td>Local manufacturers</td><td>~0.3</td></tr>
+                 <tr><td><strong>Total (avg)</strong></td><td></td><td><strong>~2.6–2.8</strong></td></tr>
+               </tbody>
+             </table>
+           </td>
+         </tr>
+         <tr class="expandable-row" data-target="pcrDetail">
+           <td>Recree8® PCR CO₂e</td><td>mass × 0.7 kg CO₂e/kg</td>
+         </tr>
+         <tr class="collapse-content hide" id="pcrDetail">
+           <td colspan="2">
+             <table class="sub-method-table">
+               <thead>
+                 <tr><th>Lifecycle Stage</th><th>Description</th><th>CO₂e (kg/kg)</th></tr>
+               </thead>
+               <tbody>
+                 <tr><td>Collection, sorting</td><td>Curbside or commercial</td><td>~0.15</td></tr>
+                 <tr><td>Transport</td><td>Interstate or regional</td><td>~0.1</td></tr>
+                 <tr><td>Reprocessing</td><td>Shredding, washing, pelletizing</td><td>~0.35</td></tr>
+                 <tr><td>Energy</td><td>Australia grid (~60–70% fossil)</td><td>~0.1–0.2</td></tr>
+                 <tr><td><strong>Total (avg)</strong></td><td></td><td><strong>~0.6–0.8</strong></td></tr>
+               </tbody>
+             </table>
+           </td>
+         </tr>
+        </tbody>
       </table>
     </section>
 
-    <!-- Certification Badge -->
     <div id="certBadge" class="cert-badge hidden">
       <i class="fas fa-check-circle"></i>
-      <span>Verified by GECA &amp; Thinkpac LCA</span>
+      <span>Verified by GECA & Thinkpac LCA</span>
     </div>
   </main>
-
-  <footer class="site-footer">
-    &copy; 2025 thinkpac.com.au
-  </footer>
-
-  <script src="script.js"></script>
+  <footer class="site-footer">&copy; 2025 thinkpac.com.au</footer>
+  <script src="js/script.js"></script>
 </body>
 </html>
