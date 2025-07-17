@@ -175,6 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const resultCO2     = vEm - pEm;         // kg CO₂e avoided
 	const resultWater   = vW - pW;           // L water saved
 	const resultEnergy  = vE - pE;           // kWh energy saved
+	const insight_bottles = Math.round(resultPlastic * 200);       // ~ bottles removed
+	const insight_car     = Math.round(resultCO2 * 4);             // ~ km car travel avoided
+	const insight_people  = Math.round(resultWater / 2);           // ~ people/day water saved
+	const insight_hours   = Math.round(resultEnergy * 50);         // ~ hours of LED bulb
 
 	// ─── 2) Capture submission date (Manila timezone) ─────────────
 	 const now      = new Date();
@@ -218,13 +222,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── EMAILJS: Send confirmation to the user ────────────────────
     emailjs.send('service_s6mj7hb', 'template_q4q6ud2', {
-       user_name:       name,
+    user_name:       name,
     user_email:      email,
     mass:            mass.toString(),
     result_plastic:  resultPlastic.toString(),
     result_co2:      resultCO2.toString(),
     result_water:    resultWater.toString(),
     result_energy:   resultEnergy.toString(),
+    insight_bottles: insight_bottles.toString(),
+    insight_car:     insight_car.toString(),
+    insight_people:  insight_people.toString(),
+    insight_hours:   insight_hours.toString(),
     lead_date:       leadDate
     })
     .then(() => console.log('✅ Confirmation email sent'))
@@ -232,13 +240,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── EMAILJS: Send lead notification to site owner ─────────────
     emailjs.send('service_s6mj7hb', 'template_o1ml1he', {
-     user_name:       name,
+    user_name:       name,
     user_email:      email,
     mass:            mass.toString(),
     result_plastic:  resultPlastic.toString(),
     result_co2:      resultCO2.toString(),
     result_water:    resultWater.toString(),
     result_energy:   resultEnergy.toString(),
+    insight_bottles: insight_bottles.toString(),
+    insight_car:     insight_car.toString(),
+    insight_people:  insight_people.toString(),
+    insight_hours:   insight_hours.toString(),
     lead_date:       leadDate
     })
     .then(() => console.log('✅ Lead notification sent'))
