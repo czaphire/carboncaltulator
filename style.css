@@ -447,3 +447,34 @@ body {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.agreement {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0.5rem 0 1rem;
+}
+
+/* slightly space the box from its label */
+.agreement input[type="checkbox"] {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+/* make the label & box inline and centered */
+.agreement-label {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0.5rem 0 1rem;
+  cursor: pointer;
+}
+
+/* space the checkbox from the text */
+.agreement-label input[type="checkbox"] {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
