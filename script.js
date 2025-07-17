@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const emailInput     = document.getElementById('email');
   const massInput      = document.getElementById('massKg');
   const compareBtn     = document.getElementById('compareBtn');
+  const agreementCheckbox = document.getElementById('agreementCheckbox');
 
   const execSec        = document.getElementById('execSummarySection');
   const summaryToggle  = document.getElementById('summaryToggle');
@@ -31,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const methodIcon   = document.getElementById('methodToggleIcon');
   const methodTable  = document.getElementById('methodologyTable');
   const certBadge    = document.getElementById('certBadge');
+ 
+
 
   // ─── LCA Factors & Formatter ──────────────────────────────────────
   const factors = {
