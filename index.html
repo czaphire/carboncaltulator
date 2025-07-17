@@ -4,9 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recree8® Impact Calculator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -15,124 +21,251 @@
   </header>
 
   <main class="container">
+    <!-- 1️⃣ User Inputs -->
     <section class="card input-card">
       <h2>Enter Your Details & Plastic Used Per Year (kg):</h2>
       <label for="name">Name:</label>
-      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="text" id="name" placeholder="Your Name"/>
       <label for="email">Email:</label>
-      <input type="email" id="email" placeholder="you@example.com" required />
+      <input type="email" id="email" placeholder="you@example.com"/>
       <div class="input-group">
-        <input type="number" id="massKg" placeholder="Mass in kg" min="0" step="0.1" />
-        <button id="compareBtn">GENERATE RESULT</button>
+        <input type="number" id="massKg" placeholder="Mass in kg" min="0" step="0.1"/>
+        <button id="compareBtn">Calculate Result</button>
       </div>
     </section>
 
-    <!-- REMOVE the old metricsSection! -->
-
-    <!-- NEW: EXEC SUMMARY WITH METRICS INSIDE -->
+    <!-- 2️⃣ Collapsible Impact Summary -->
     <section id="execSummarySection" class="card exec-card hidden">
-      <h2>Recree8® Impact Summary</h2>
-      <div id="impactMetricsContainer" class="metrics">
-        <div class="metric-card" data-type="plastic">
-          <i class="fas fa-recycle"></i>
-          <div class="metric-value"><span id="metricPlastic">0</span></div>
-          <div class="metric-label">Plastic Displaced<br><span class="metric-unit">(kg)</span></div>
-          <div class="metric-indicator hidden"></div>
+      <div id="summaryToggle" class="summary-header">
+        <h2>Recree8® Impact Summary</h2>
+        <i id="summaryToggleIcon" class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div id="summaryContent" class="summary-content hide">
+        <div class="metrics">
+          <div class="metric-card" data-type="plastic">
+            <i class="fas fa-recycle"></i>
+            <div class="metric-value"><span id="metricPlastic">0</span></div>
+            <div class="metric-label">
+              Plastic Displaced<br/><span class="metric-unit">(kg)</span>
+            </div>
+            <div class="metric-indicator hidden"></div>
+          </div>
+          <div class="metric-card" data-type="co2">
+            <i class="fas fa-cloud"></i>
+            <div class="metric-value"><span id="metricCO2">0</span></div>
+            <div class="metric-label">
+              CO₂e Avoided<br/><span class="metric-unit">(kg)</span>
+            </div>
+            <div class="metric-indicator hidden"></div>
+          </div>
+          <div class="metric-card" data-type="water">
+            <i class="fas fa-water"></i>
+            <div class="metric-value"><span id="metricWater">0</span></div>
+            <div class="metric-label">
+              Water Saved<br/><span class="metric-unit">(L)</span>
+            </div>
+            <div class="metric-indicator hidden"></div>
+          </div>
+          <div class="metric-card" data-type="energy">
+            <i class="fas fa-bolt"></i>
+            <div class="metric-value"><span id="metricEnergy">0</span></div>
+            <div class="metric-label">
+              Energy Saved<br/><span class="metric-unit">(kWh)</span>
+            </div>
+            <div class="metric-indicator hidden"></div>
+          </div>
         </div>
-        <div class="metric-card" data-type="co2">
-          <i class="fas fa-cloud"></i>
-          <div class="metric-value"><span id="metricCO2">0</span></div>
-          <div class="metric-label">CO₂e Avoided<br><span class="metric-unit">(kg)</span></div>
-          <div class="metric-indicator hidden"></div>
-        </div>
-        <div class="metric-card" data-type="water">
-          <i class="fas fa-water"></i>
-          <div class="metric-value"><span id="metricWater">0</span></div>
-          <div class="metric-label">Water Saved<br><span class="metric-unit">(litres)</span></div>
-          <div class="metric-indicator hidden"></div>
-        </div>
-        <div class="metric-card" data-type="energy">
-          <i class="fas fa-bolt"></i>
-          <div class="metric-value"><span id="metricEnergy">0</span></div>
-          <div class="metric-label">Energy Saved<br><span class="metric-unit">(kWh)</span></div>
-          <div class="metric-indicator hidden"></div>
+
+        <!-- 3️⃣ Insight Cards -->
+        <div id="insightSection" class="insight-cards hidden">
+          <div id="insightPlastic" class="insight-card hidden"></div>
+          <div id="insightCO2"     class="insight-card hidden"></div>
+          <div id="insightWater"   class="insight-card hidden"></div>
+          <div id="insightEnergy"  class="insight-card hidden"></div>
         </div>
       </div>
     </section>
 
-    <section id="insightSection" class="insight-cards hidden">
-      <div id="insightPlastic" class="insight-card hidden"></div>
-      <div id="insightCO2" class="insight-card hidden"></div>
-      <div id="insightWater" class="insight-card hidden"></div>
-      <div id="insightEnergy" class="insight-card hidden"></div>
-    </section>
-
+    <!-- 4️⃣ Charts -->
     <section id="chart1Section" class="card chart-card hidden">
       <h2>CO₂e Emissions</h2>
       <canvas id="emissionChart"></canvas>
     </section>
-
     <section id="chart2Section" class="card chart-card hidden">
       <h2>Impacts Comparison</h2>
       <canvas id="savingsChart"></canvas>
     </section>
 
-    <section id="methodologySection" class="card methodology-card hidden">
-      <div id="methodToggle" class="methodology-header">
-        <h2>Methodology Appendix</h2>
-        <i id="toggleIcon" class="fas fa-chevron-down"></i>
-      </div>
-      <table id="methodologyTable" class="methodology-table hide">
-        <thead><tr><th>Metric</th><th>Formula</th></tr></thead>
-        <tbody>
-         <tr class="expandable-row" data-target="virginDetail">
-            <td>Virgin CO₂e</td><td>mass × 2.7 kg CO₂e/kg</td>
-         </tr>
-         <tr class="collapse-content hide" id="virginDetail">
-           <td colspan="2">
-             <table class="sub-method-table">
-               <thead>
-                 <tr><th>Lifecycle Stage</th><th>Description</th><th>CO₂e (kg/kg)</th></tr>
-               </thead>
-               <tbody>
-                 <tr><td>Raw material</td><td>Crude oil extraction, cracking</td><td>~0.9</td></tr>
-                 <tr><td>Polymer production</td><td>Energy-intensive (natural gas-heavy)</td><td>~1.1</td></tr>
-                 <tr><td>Transport</td><td>Long distances in AUS</td><td>~0.4</td></tr>
-                 <tr><td>Packaging conversion</td><td>Local manufacturers</td><td>~0.3</td></tr>
-                 <tr><td><strong>Total (avg)</strong></td><td></td><td><strong>~2.6–2.8</strong></td></tr>
-               </tbody>
-             </table>
-           </td>
-         </tr>
-         <tr class="expandable-row" data-target="pcrDetail">
-           <td>Recree8® PCR CO₂e</td><td>mass × 0.7 kg CO₂e/kg</td>
-         </tr>
-         <tr class="collapse-content hide" id="pcrDetail">
-           <td colspan="2">
-             <table class="sub-method-table">
-               <thead>
-                 <tr><th>Lifecycle Stage</th><th>Description</th><th>CO₂e (kg/kg)</th></tr>
-               </thead>
-               <tbody>
-                 <tr><td>Collection, sorting</td><td>Curbside or commercial</td><td>~0.15</td></tr>
-                 <tr><td>Transport</td><td>Interstate or regional</td><td>~0.1</td></tr>
-                 <tr><td>Reprocessing</td><td>Shredding, washing, pelletizing</td><td>~0.35</td></tr>
-                 <tr><td>Energy</td><td>Australia grid (~60–70% fossil)</td><td>~0.1–0.2</td></tr>
-                 <tr><td><strong>Total (avg)</strong></td><td></td><td><strong>~0.6–0.8</strong></td></tr>
-               </tbody>
-             </table>
-           </td>
-         </tr>
-        </tbody>
-      </table>
-    </section>
+<!-- 5️⃣ Methodology Appendix -->
+<section id="methodologySection" class="card methodology-card hidden">
+  <div id="methodToggle" class="methodology-header">
+    <h2>Methodology Appendix</h2>
+    <i id="methodToggleIcon" class="fas fa-chevron-down toggle-icon"></i>
+  </div>
 
+  <!-- this is what your JS toggles hide/show on -->
+  <div id="methodologyTable" class="methodology-wrapper hide">
+
+    <!-- CO₂e Group -->
+    <details class="method-group">
+      <summary>CO₂e Calculation (ISO 14040/ISO 14044)</summary>
+
+      <!-- Virgin Plastic -->
+      <details class="method-sub">
+        <summary>
+          <span>Virgin Plastic <small>(Imported from China)</small></span>
+          <span class="formula">mass × 3.5 kg CO₂e/kg</span>
+        </summary>
+        <div class="table-responsive">
+          <table class="method-list-table">
+            <thead>
+              <tr><th>Stage</th><th>Description</th><th>CO₂e (kg/kg)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Raw material</td><td>Crude oil extraction</td><td>~1.0</td></tr>
+              <tr><td>Polymer production</td><td>Natural gas–heavy</td><td>~2.0</td></tr>
+              <tr><td>Transport</td><td>Long distances (AUS)</td><td>~0.2</td></tr>
+              <tr><td>Packaging</td><td>Local manufacturers</td><td>~0.3</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- Recree8® PCR -->
+      <details class="method-sub">
+        <summary>
+          <span>Recree8® PCR <small>(Imported in Malaysia)</small></span>
+          <span class="formula">mass × 0.7 kg CO₂e/kg</span>
+        </summary>
+        <div class="table-responsive">
+          <table class="method-list-table">
+            <thead>
+              <tr><th>Stage</th><th>Description</th><th>CO₂e (kg/kg)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Collection</td><td>Curbside/commercial</td><td>~0.15</td></tr>
+              <tr><td>Transport</td><td>Interstate/regional</td><td>~0.10</td></tr>
+              <tr><td>Reprocessing</td><td>Shredding &amp; washing</td><td>~0.35</td></tr>
+              <tr><td>Energy</td><td>Grid (60–70% fossil)</td><td>~0.15</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </details>
+
+    <!-- Water Group -->
+    <details class="method-group">
+      <summary>Water Footprint (ISO 14046:2014)</summary>
+
+      <!-- Virgin Plastic -->
+      <details class="method-sub">
+        <summary>
+          <span>Virgin Plastic <small>(Imported from China)</small></span>
+          <span class="formula">mass × 180 L/kg</span>
+        </summary>
+        <div class="table-responsive">
+          <table class="method-list-table">
+            <thead>
+              <tr><th>Stage</th><th>Description</th><th>Water (L/kg)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Extraction</td><td>Groundwater &amp; oil imports</td><td>~11</td></tr>
+              <tr><td>Production</td><td>Steam &amp; cooling</td><td>~150</td></tr>
+              <tr><td>Transport</td><td>Diesel refinement</td><td>~9</td></tr>
+              <tr><td>Conversion</td><td>Machinery wash</td><td>~10</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- Recree8® PCR -->
+      <details class="method-sub">
+        <summary>
+          <span>Recree8® PCR <small>(Imported in Malaysia)</small></span>
+          <span class="formula">mass × 25 L/kg</span>
+        </summary>
+        <div class="table-responsive">
+          <table class="method-list-table">
+            <thead>
+              <tr><th>Stage</th><th>Description</th><th>Water (L/kg)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Collection/Sorting</td><td>Curbside/commercial</td><td>~5</td></tr>
+              <tr><td>Production</td><td>Steam &amp; cooling for melt &amp; process</td><td>~80</td></tr>
+              <tr><td>Transport</td><td>Diesel for scrap transport</td><td>~8</td></tr>
+              <tr><td>Wash-down</td><td>Machinery cleaning</td><td>~12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </details>
+
+    <!-- Energy Group -->
+    <details class="method-group">
+      <summary>Energy Footprint (ISO standard)</summary>
+
+      <!-- Virgin Plastic -->
+      <details class="method-sub">
+        <summary>
+          <span>Virgin Plastic <small>(Imported from China)</small></span>
+          <span class="formula">mass × 12.1 kWh/kg</span>
+        </summary>
+        <div class="table-responsive">
+          <table class="method-list-table">
+            <thead>
+              <tr><th>Stage</th><th>Description</th><th>Energy (kWh/kg)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Extraction</td><td>Drilling &amp; transport</td><td>~1.3</td></tr>
+              <tr><td>Polymerization</td><td>High-temp processing</td><td>~7</td></tr>
+              <tr><td>Transport</td><td>Fuel &amp; logistics</td><td>~0.1</td></tr>
+              <tr><td>Conversion</td><td>Extrusion/molding</td><td>~3.7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- Recree8® PCR -->
+      <details class="method-sub">
+        <summary>
+          <span>Recree8® PCR <small>(Imported in Malaysia)</small></span>
+          <span class="formula">mass × 5.2 kWh/kg</span>
+        </summary>
+        <div class="table-responsive">
+          <table class="method-list-table">
+            <thead>
+              <tr><th>Stage</th><th>Description</th><th>Energy (kWh/kg)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Extraction</td><td>Sorting & pre-treatment</td><td>~0.04</td></tr>
+              <tr><td>Polymerization recycling</td><td>Mechanical recycling</td><td>~1.4</td></tr>
+              <tr><td>Transport</td><td>Road freight</td><td>~0.08</td></tr>
+              <tr><td>Injection-molding</td><td>Conversion input</td><td>~3.7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </details>
+
+  </div>
+</section>
+
+
+    <!-- Verified badge -->
     <div id="certBadge" class="cert-badge hidden">
       <i class="fas fa-check-circle"></i>
-      <span>Verified by GECA & Thinkpac LCA</span>
+      <span><i>Calculated per ISO standards (see Methodology Table).</i></span>
     </div>
   </main>
+
   <footer class="site-footer">&copy; 2025 thinkpac.com.au</footer>
-  <script src="js/script.js"></script>
+ <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('nOjcxbB9Swb_AmQqu')
+</script>
+
+  <script src="script.js"></script>
 </body>
 </html>
