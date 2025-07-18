@@ -1,0 +1,481 @@
+/* ─── Reset & Base ───────────────────────────────────────────────── */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Poppins',sans-serif;
+  background:#343444; color:#fff; line-height:1.4;
+}
+.container { max-width:900px; margin:2rem auto; padding:0 1rem; }
+
+/* ─── Header & Footer ───────────────────────────────────────────── */
+.site-header, .site-footer {
+  text-align:center; padding:1rem; background:#106552; color:#fff;
+}
+
+/* ─── Generic Card ───────────────────────────────────────────────── */
+.card {
+  background:#fff; color:#333;
+  border-radius:8px; padding:1.5rem; margin-bottom:1.5rem;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ─── Hide Utility ───────────────────────────────────────────────── */
+.hidden, .hide { display:none !important; }
+
+/* ─── Input Card ───────────────────────────────────────────────── */
+.input-card label {
+  display:block; margin-top:1rem; margin-bottom:.25rem;
+  font-size:.9rem; color:#333;
+}
+.input-card input {
+  width:100%; padding:.5rem; font-size:1rem;
+  border:1px solid #ccc; border-radius:4px;
+}
+.input-card input:focus {
+  border-color:#106552; outline:none;
+}
+.input-card .input-group {
+  display:flex; gap:.5rem; margin-top:1rem;
+}
+.input-card button {
+  background:#106552; color:#fff; border:none;
+  padding:0 1.5rem; cursor:pointer; border-radius:4px;
+  font-size:1rem;
+}
+.input-card button:hover { background:#0e553f; }
+
+/* ─── Collapsible Headers ───────────────────────────────────────── */
+.summary-header, .methodology-header {
+  display:flex; justify-content:center; align-items:center;
+  gap:.5rem; cursor:pointer;
+}
+.toggle-icon {
+  font-size:1.2rem; transition:transform .2s;
+}
+.toggle-icon.fa-chevron-up { transform:rotate(180deg); }
+
+/* ─── Metrics Grid ──────────────────────────────────────────────── */
+.metrics {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:1rem; margin-top:1rem;
+}
+
+/* ─── Metric Cards ─────────────────────────────────────────────── */
+.metric-card {
+  background:#fff; color:#333; border-radius:8px;
+  padding:1rem; text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  cursor:pointer;
+}
+.metric-card .fas {
+  font-size:2rem; color:#106552; margin-bottom:.5rem;
+}
+.metric-value {
+  font-size:1.8rem; font-weight:600; margin-bottom:.25rem;
+}
+.metric-label {
+  font-size:.9rem; color:#555;
+}
+.metric-unit {
+  font-size:.8rem; color:#777;
+}
+.metric-indicator {
+  width:0; height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:10px solid #106552;
+  margin:.5rem auto 0; display:none;
+}
+.metric-indicator.show { display:block; }
+
+/* ─── Insight Cards ─────────────────────────────────────────────── */
+.insight-cards {
+  margin-top:1.5rem;
+}
+.insight-card {
+  display:flex; gap:1rem; align-items:flex-start;
+  background:#daf1e3; /* light minty green */
+  border-left:6px solid #106552;
+  border-radius:8px; padding:1rem 1.5rem;
+  color:#106552; font-size:1rem;
+}
+.insight-card .icon {
+  font-size:2.5rem; margin-top:4px;
+}
+.insight-card .content {
+  flex:1;
+}
+.insight-card .highlight {
+  font-weight:700; margin-bottom:.5rem;
+}
+.insight-card .emoji {
+  margin:0.75rem 0; font-size:1.1rem;
+}
+.insight-card .tagline {
+  font-style:italic; color:#0e553f;
+}
+
+/* ─── Charts ───────────────────────────────────────────────────── */
+.chart-card {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem; /* keep default top/right/bottom/left padding */
+}
+.chart-card canvas {
+  display: block;
+  width: 100%;
+  height: 300px !important; /* force the canvas to be 300px tall */
+}
+
+/* ─── Methodology Table ───────────────────────────────────────── */
+.methodology-table {
+  width:100%; border-collapse:collapse; margin-top:1rem;
+}
+.methodology-table th, .methodology-table td {
+  padding:.75rem; border:1px solid #ddd; text-align:center; position:relative;
+}
+.methodology-table thead {
+  background:#106552; color:#fff;
+}
+
+/* Sub-group & details */
+.subgroup, .subdetail { background:#f9f9f9; }
+.subgroup:hover { background:#eefaf6; }
+
+/* Nested sub-tables */
+.sub-method-table {
+  width:100%; border-collapse:collapse; margin:.5rem 0;
+}
+.sub-method-table th, .sub-method-table td {
+  padding:8px 12px; border:1px solid #ccc; background:#fff; color:#333;
+}
+.sub-method-table th { background:#106552; color:#fff; }
+
+/* ─── Verified Badge ───────────────────────────────────────────── */
+.cert-badge {
+  display:flex; justify-content:center; align-items:center;
+  gap:.5rem; margin:1rem 0; color:#fff;
+}
+
+/* ─── Import-Source Note ───────────────────────────────────────── */
+.import-source {
+  font-size:0.8em;
+  color:#555;
+  font-style:italic;
+  margin-left:4px;
+}
+
+/* ─── Animations ───────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(-5px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+/* ――― Horizontal scroll wrapper (existing) ――― */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ――― Tighter tables on tablet/phone (≤768px) ――― */
+@media (max-width: 768px) {
+  .methodology-table th,
+  .methodology-table td,
+  .sub-method-table th,
+  .sub-method-table td {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+  .methodology-table,
+  .sub-method-table {
+    min-width: 480px;
+  }
+}
+
+/* ――― Stacked key–value tables on small phones (≤480px) ――― */
+@media (max-width: 480px) {
+  /* 1) hide the headers */
+  .methodology-table thead,
+  .sub-method-table thead {
+    display: none;
+  }
+
+  /* 2) make every row & cell block-level */
+  .methodology-table,
+  .sub-method-table,
+  .methodology-table tbody,
+  .sub-method-table tbody,
+  .methodology-table tr,
+  .sub-method-table tr,
+  .methodology-table td,
+  .sub-method-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* 3) style each “row card” */
+  .methodology-table tr,
+  .sub-method-table tr {
+    margin-bottom: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.25rem 0;
+  }
+
+  /* 4) style each “cell” inside the row */
+  .methodology-table td,
+  .sub-method-table td {
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  /* 5) inject the label before each cell */
+  .methodology-table td:nth-child(1):before {
+    content: "Metric: ";
+    font-weight: 600;
+  }
+  .methodology-table td:nth-child(2):before {
+    content: "Formula: ";
+    font-weight: 600;
+  }
+  .sub-method-table td:nth-child(1):before {
+    content: "Stage: ";
+    font-weight: 600;
+  }
+  .sub-method-table td:nth-child(2):before {
+    content: "Description: ";
+    font-weight: 600;
+  }
+  .sub-method-table td:nth-child(3):before {
+    content: "Value: ";
+    font-weight: 600;
+  }
+}
+/* hide by default (we toggle this in your JS) */
+.methodology-wrapper.hide {
+  display: none;
+}
+
+/* group wrapper */
+.method-group,
+.method-sub {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* top‐level groups */
+.method-group > summary {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+}
+/* subgroups one level deeper */
+.method-sub > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: #f8f8f8;
+  cursor: pointer;
+  list-style: none;
+}
+
+/* formula on right side */
+.method-sub .formula {
+  font-weight: 600;
+  color: #106552;
+  white-space: nowrap;
+}
+
+/* remove default triangle and use your icon instead */
+.method-group summary::-webkit-details-marker,
+.method-sub summary::-webkit-details-marker {
+  display: none;
+}
+.method-group summary::after,
+.method-sub summary::after {
+  content: "\f107";           /* FontAwesome chevron-down */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform .2s;
+}
+.method-group[open] > summary::after,
+.method-sub[open] > summary::after {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+/* list of stage details */
+.method-list {
+  margin: 0;
+  padding: 0.5rem 1.25rem;
+  list-style: none;
+}
+.method-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+.method-list li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .method-group > summary,
+  .method-sub > summary {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  .method-list {
+    padding: 0.4rem 1rem;
+  }
+  .method-list li { font-size: 0.85rem; }
+}
+/* ─── Give top‐level summaries the dark‐green background ─── */
+.method-group > summary {
+  background-color: #106552;
+  color: #fff;
+}
+
+/* ─── Your existing scroll wrapper ─── */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Style the 3-column subdetail table ─── */
+.method-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+.method-list-table thead th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid #ddd;
+}
+.method-list-table tbody td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* ─── Mobile-compact tweaks (≤480px) ─── */
+@media (max-width: 480px) {
+  .method-list-table thead {
+    display: none;  /* hide headers on tiny screens */
+  }
+  .method-list-table,
+  .method-list-table tbody,
+  .method-list-table tr,
+  .method-list-table td {
+    display: block;
+    width: 100%;
+  }
+  .method-list-table tr {
+    margin-bottom: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.25rem 0;
+  }
+  .method-list-table td {
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+  .method-list-table td:nth-child(1):before {
+    content: "Stage: ";
+    font-weight: 600;
+  }
+  .method-list-table td:nth-child(2):before {
+    content: "Description: ";
+    font-weight: 600;
+  }
+  .method-list-table td:nth-child(3):before {
+    content: "Value: ";
+    font-weight: 600;
+  }
+}
+#compareBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #106552 0%, #1a8a6e 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#compareBtn i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#compareBtn:hover {
+  background: linear-gradient(135deg, #1a8a6e 0%, #106552 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#compareBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+#compareBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.agreement {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* ← add this */
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0.5rem 0 1rem;
+}
+
+/* slightly space the box from its label */
+.agreement input[type="checkbox"] {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+/* make the label & box inline and centered */
+.agreement-label {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0.5rem 0 1rem;
+  cursor: pointer;
+}
+
+/* space the checkbox from the text */
+.agreement-label input[type="checkbox"] {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
